@@ -3,6 +3,9 @@ package projects.marcoscavalcante.com.bakinga_app.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class Recipe implements Parcelable
@@ -14,6 +17,14 @@ public class Recipe implements Parcelable
 
     private ArrayList<Ingredient> ingredients;
     private ArrayList<Step> steps;
+
+    public Recipe(JSONObject recipe ) throws JSONException
+    {
+        this.id       = recipe.getInt("id");
+        this.name     = recipe.getString("name");
+        this.servings = recipe.getInt("servings");
+        this.image    = recipe.getString("image");
+    }
 
     public Recipe(int id, String name, int servings, String image, ArrayList<Ingredient> ingredients, ArrayList<Step> steps) {
         this.id = id;

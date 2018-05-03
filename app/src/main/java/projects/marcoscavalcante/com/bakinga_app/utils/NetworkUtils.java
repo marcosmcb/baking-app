@@ -16,7 +16,7 @@ public class NetworkUtils
      * @return The contents of the HTTP response.
      * @throws IOException Related to network and stream reading
      */
-    public String getResponseFromApi( ) throws IOException
+    public static String getResponseFromApi( ) throws IOException
     {
         URL url = new URL( sAPI_URL );
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

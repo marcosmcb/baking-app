@@ -65,7 +65,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
 
     @Override
-    public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position)
+    public void onBindViewHolder(RecipeViewHolder holder, int position)
     {
         Recipe mRecipe   = mRecipesDataset.get( position );
         Context mContext = holder.itemView.getContext();
@@ -73,6 +73,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         ImageView mImageView = mView.findViewById( R.id.ivRecipePicture );
         TextView mTextView   = mView.findViewById( R.id.tvRecipeTitle );
+
+        mTextView.setText( mRecipe.getName() );
 
     }
 
@@ -82,12 +84,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         private ImageView mRecipeImage;
+        private TextView mRecipeName;
 
         public RecipeViewHolder(View itemView)
         {
             super( itemView );
             itemView.setOnClickListener( this );
             mRecipeImage = itemView.findViewById( R.id.ivRecipePicture );
+            mRecipeName  = itemView.findViewById( R.id.tvRecipeTitle );
         }
 
         @Override

@@ -3,13 +3,23 @@ package projects.marcoscavalcante.com.bakinga_app.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Ingredient implements Parcelable
 {
-    private float quantity;
+    private Double quantity;
     private String measure;
     private String name;
 
-    public Ingredient(float quantity, String measure, String name)
+    public Ingredient( JSONObject ingredient ) throws JSONException
+    {
+        this.quantity = ingredient.getDouble( "quantity" );
+        this.measure  = ingredient.getString( "measure" );
+        this.name     = ingredient.getString( "ingredient" );
+    }
+
+    public Ingredient(Double quantity, String measure, String name)
     {
         this.quantity = quantity;
         this.measure = measure;
@@ -18,7 +28,7 @@ public class Ingredient implements Parcelable
 
 
     protected Ingredient(Parcel in) {
-        quantity = in.readFloat();
+        quantity = in.readDouble();
         measure = in.readString();
         name = in.readString();
     }
@@ -35,11 +45,11 @@ public class Ingredient implements Parcelable
         }
     };
 
-    public float getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(float quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 
@@ -66,7 +76,7 @@ public class Ingredient implements Parcelable
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeFloat(quantity);
+        dest.writeDouble(quantity);
         dest.writeString(measure);
         dest.writeString(name);
     }

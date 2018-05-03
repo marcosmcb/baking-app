@@ -3,6 +3,9 @@ package projects.marcoscavalcante.com.bakinga_app.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Step implements Parcelable
 {
     private int id;
@@ -11,6 +14,14 @@ public class Step implements Parcelable
     private String videoUrl;
     private String thumbnailUrl;
 
+    public Step( JSONObject step ) throws JSONException
+    {
+        this.id               = step.getInt("id");
+        this.shortDescription = step.getString( "shortDescription" );
+        this.description      = step.getString( "description" );
+        this.videoUrl         = step.getString( "videoURL" );
+        this.thumbnailUrl     = step.getString( "thumbnailURL" );
+    }
 
     public Step(int id, String shortDescription, String description, String videoUrl, String thumbnailUrl)
     {
